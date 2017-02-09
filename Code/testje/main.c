@@ -31,26 +31,26 @@ void knipperLed(int pin, int delay)
 #pragma region B2
 
 
-//int main(void)
-//{
-//
-//
-//DDRD = 0b11111111;
-//
-//while (1)
-//{
-////pin 7 hoog zetten, pin 6 laag zetten
-//PORTD = 0b10000000;
-////500ms wachten
-//wachten(500);
-////pin 6 hoog zetten, pin 7 laag zetten
-//PORTD = 0b01000000;
-////500ms wachten
-//wachten(500);
-//}
-//
-//return 1;
-//}
+int main(void)
+{
+
+
+DDRD = 0b11111111;
+
+while (1)
+{
+//pin 7 hoog zetten, pin 6 laag zetten
+PORTD = 0b10000000;
+//500ms wachten
+wachten(500);
+//pin 6 hoog zetten, pin 7 laag zetten
+PORTD = 0b01000000;
+//500ms wachten
+wachten(500);
+}
+
+return 1;
+}
 #pragma endregion B2
 
 //B3
