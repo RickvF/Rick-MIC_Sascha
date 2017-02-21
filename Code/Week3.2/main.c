@@ -15,7 +15,7 @@
 
 int aantalKeerPress = 0;
 
-ISR(TIMER2_OVF_vect)
+ISR(TIMER2_COMP_vect)
 {
 	aantalKeerPress++;
 }
@@ -44,11 +44,7 @@ int main(void)
     /* Replace with your application code */
     while (1)
     {
-		_delay_ms(1000);
-		clear();
-		_delay_ms(50);
 		home();
-		_delay_ms(50);
 		char write = '0' + aantalKeerPress;
 		lcd_writeChar(write);
     }

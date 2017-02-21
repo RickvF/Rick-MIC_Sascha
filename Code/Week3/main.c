@@ -27,7 +27,7 @@ int main(void)
 
 	char text[] = "hallo 1234567890 cool display";
 
-	set_cursor(0);
+	set_cursor(40);
 	display_text(text);
 	
     /* Replace with your application code */

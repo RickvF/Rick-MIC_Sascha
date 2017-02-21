@@ -427,11 +427,11 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xde4
+.debug_info     0x00000000      0xde5
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128a/avr51/crtatmega128a.o
  .debug_info    0x00000780      0x384 lcd.o
- .debug_info    0x00000b04      0x2e0 main.o
+ .debug_info    0x00000b04      0x2e1 main.o
 
 .debug_abbrev   0x00000000      0x9da
  *(.debug_abbrev)
