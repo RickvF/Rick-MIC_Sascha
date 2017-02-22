@@ -14,9 +14,12 @@
 #include "lcd.h"
 
 int i = 0;
+int t = 0;
+
 int main(void)
 {
 	DDRC = 0b11111111;
+	DDRD = 0b11111111;
 	init();
 	_delay_ms(1000);
 	clear();
@@ -24,13 +27,13 @@ int main(void)
 	home();
 	_delay_ms(1000);
 
-	OCR2 = 62;
+	OCR2 = 15624;
 	TCCR2 |= (1 << WGM21);
 	// Set to CTC Mode
 	TIMSK |= (1 << OCIE2);
 	//Set interrupt on compare match
-	TCCR2 |= (1 << CS21);
-	// set prescaler to 64 and starts PWM
+	TCCR2 |= (1<<CS02) | (1<<CS00);
+	// set prescaler to 1024 and starts PWM
 	sei();
 	// enable interrupts
 	while (1);
@@ -41,8 +44,22 @@ int main(void)
 
 ISR (TIMER2_COMP_vect)
 {
-	// action to be done every 250us
-	i++;
+	if(t = 0)
+	{
+		PORTD = 0b00000000;
+		t= 1;
+	}
+	else
+	{
+		PORTD = 0b11111111;
+		t= 0;
+	}
+	clear();
+	++i;
+	if(i>9)
+	{
+		i = 0;
+	}
 	char write = i + '0';
 	lcd_writeChar(write);
 }
