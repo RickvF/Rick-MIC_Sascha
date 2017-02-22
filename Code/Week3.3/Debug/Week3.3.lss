@@ -1,5 +1,5 @@
 
-Week3.2.elf:     file format elf32-avr
+Week3.3.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000098  00000000  00000000  000002d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000d30  00000000  00000000  0000036c  2**0
+  6 .debug_info   00000d2e  00000000  00000000  0000036c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000009c0  00000000  00000000  0000109c  2**0
+  7 .debug_abbrev 000009c0  00000000  00000000  0000109a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000565  00000000  00000000  00001a5c  2**0
+  8 .debug_line   00000565  00000000  00000000  00001a5a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000015c  00000000  00000000  00001fc4  2**2
+  9 .debug_frame  0000015c  00000000  00000000  00001fc0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004ac  00000000  00000000  00002120  2**0
+ 10 .debug_str    0000049c  00000000  00000000  0000211c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000025f  00000000  00000000  000025cc  2**0
+ 11 .debug_loc    0000025f  00000000  00000000  000025b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000078  00000000  00000000  0000282b  2**0
+ 12 .debug_ranges 00000078  00000000  00000000  00002817  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -229,7 +229,7 @@ Disassembly of section .text:
 00000130 <main>:
 #include "lcd.h"
 
-int aantalKeerPress = 0;
+int i = 0;
 int main(void)
 {
 	DDRC = 0b11111111;
@@ -329,13 +329,13 @@ ISR (TIMER2_COMP_vect)
  1ac:	ef 93       	push	r30
  1ae:	ff 93       	push	r31
 	// action to be done every 250us
-	aantalKeerPress++;
+	i++;
  1b0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
  1b4:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
  1b8:	01 96       	adiw	r24, 0x01	; 1
  1ba:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
  1be:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-	char write = aantalKeerPress + '0';
+	char write = i + '0';
 	lcd_writeChar(write);
  1c2:	80 5d       	subi	r24, 0xD0	; 208
  1c4:	88 df       	rcall	.-240    	; 0xd6 <lcd_writeChar>

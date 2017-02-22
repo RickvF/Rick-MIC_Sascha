@@ -339,9 +339,8 @@ END GROUP
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.aantalKeerPress
-                0x00800100        0x2 main.o
-                0x00800100                aantalKeerPress
+ .bss.i         0x00800100        0x2 main.o
+                0x00800100                i
  *(COMMON)
                 0x00800102                PROVIDE (__bss_end, .)
                 0x000001f0                __data_load_start = LOADADDR (.data)
@@ -427,11 +426,11 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xd30
+.debug_info     0x00000000      0xd2e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128a/avr51/crtatmega128a.o
  .debug_info    0x00000780      0x384 lcd.o
- .debug_info    0x00000b04      0x22c main.o
+ .debug_info    0x00000b04      0x22a main.o
 
 .debug_abbrev   0x00000000      0x9c0
  *(.debug_abbrev)
@@ -450,13 +449,13 @@ END GROUP
  .debug_frame   0x00000000       0xe0 lcd.o
  .debug_frame   0x000000e0       0x7c main.o
 
-.debug_str      0x00000000      0x4ac
+.debug_str      0x00000000      0x49c
  *(.debug_str)
  .debug_str     0x00000000      0x27d C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128a/avr51/crtatmega128a.o
  .debug_str     0x0000027d      0x1fd lcd.o
                                 0x236 (size before relaxing)
- .debug_str     0x0000047a       0x32 main.o
-                                0x1ff (size before relaxing)
+ .debug_str     0x0000047a       0x22 main.o
+                                0x1ef (size before relaxing)
 
 .debug_loc      0x00000000      0x25f
  *(.debug_loc)
@@ -488,5 +487,5 @@ END GROUP
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(Week3.2.elf elf32-avr)
+OUTPUT(Week3.3.elf elf32-avr)
 LOAD linker stubs
