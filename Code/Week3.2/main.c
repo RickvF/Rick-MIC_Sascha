@@ -27,10 +27,11 @@ int main(void)
 	DDRD = 0b00000000;
 	DDRB = 0b11111111;
 
+	TCCR2 = 0b00011111;
 	OCR2 = 1;
 	TIMSK |= 0x80;
 	sei();
-	TCCR2 = 0b00000111;
+	
 	
     _delay_ms(1000);
 
@@ -40,7 +41,8 @@ int main(void)
     _delay_ms(1000);
     home();
     _delay_ms(1000);
-    
+	lcd_writeChar('5');
+
     /* Replace with your application code */
     while (1)
     {

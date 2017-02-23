@@ -3,7 +3,7 @@
  *
  * Created: 22-2-2017 10:37:29
  * Author : Rick
- */ 
+ */
 
 #define F_CPU 8000000
 #include <avr/io.h>
@@ -11,27 +11,45 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
+#include "lcd.h"
 
-int main(void)
-{
-	DDRB |= (1 << 0); // Set LED as output
-
-	TIMSK |= (1 << OCIE2);
-	//Set interrupt on compare match
-	TCCR2 |= (1 << WGM21) | (1 << CS22) | (1 << CS21) | (1 << CS20);
-	// Set to CTC Mode
-	OCR2 = 98;
-	
-	sei();
-	// enable interrupts
-	while (1);
-	{
-		// we have a working timer
-	} 
-}
+int t = 0;
 
 ISR (TIMER2_COMP_vect)
 {
-	PORTB ^= (1 << 0); // Toggle the LED
+	if(0 == t)
+	{
+		PORTB = 0b00000000;
+		t= 1;
+		 OCR2 = 193;
+	}
+	else
+	{
+		PORTB = 0b11111111;
+		t= 0;
+		OCR2 = 117;
+	}
 }
+
+ void timer2Init()
+ {
+	 
+	 OCR2 = 117;// Compare value of counter 2
+
+	 TIMSK = 0b10000000;// T2 compare match interrupt enable
+
+	 TCCR2 = 0b00011101;
+ }
+
+int main(void)
+{
+	DDRB = 0b11111111; // all output
+	timer2Init();
+	sei();
+	while (1);
+	{
+		
+	}
+}
+
 
