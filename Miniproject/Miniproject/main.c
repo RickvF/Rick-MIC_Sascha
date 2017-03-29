@@ -113,5 +113,3 @@ int main(void)
 		setServo(servov, servoh);
 	}
 }
-
-
