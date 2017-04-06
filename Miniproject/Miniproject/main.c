@@ -11,7 +11,7 @@ void servo_init( void )
 	OCR1A = 46;					// Vertical Servo
 	OCR1B = 46;					// Horizontal Servo
 	TCCR1A = 0b10101001;				// compare output OC1A,OC1B
-	TCCR1B = 0b00001100;				// fast PWM 8 bit, prescaler=64, RUN
+	TCCR1B = 0b00001100;				// fast PWM 8 bit, prescaler=256, RUN
 }
 
 void setServo( unsigned char servoV, unsigned char servoH ) //30 links //46 midden //62 meest recht
